@@ -9,3 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/halo',[HaloController::class,'index']); // 1. NAMPILIN DARI HALOCONTROLLER, BUKAN LANGSUNG DARI RESOURCE, SI INDEX INI DARI PUBLIC FUNGSI NYA. => BUKA CONTROLLER
+
+Route::get('/tudu', function () {
+    return view('todo.app');
+});
