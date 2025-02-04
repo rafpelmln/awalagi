@@ -5,4 +5,4 @@
     <li>-cp .env.example .env</li>
     <li>-php artisan key:generate</li>
 </ul>
-<h2>https://www.youtube.com/watch?v=5j-ws96-ty8&t=2764s (last minute 51.21)</h2>
+<h2>https://www.youtube.com/watch?v=5j-ws96-ty8&t=2764s (last minute 1.21.02)</h2>
