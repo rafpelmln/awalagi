@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <!-- Bootstrap CSS -->
@@ -41,7 +41,9 @@
              <div class="card mb-3">
                 <div class="card-body">
                     <!-- 02. Form input data -->
-                    <form id="todo-form" action="" method="post">
+                                         {{-- TAMBAH URL DI ACTION BIAR BISA AKSES SI WEB HALAMAN NYA, dan yang diakses nya cumman method post aja --}}
+                    <form id="todo-form" action="{{ url('/tudu') }}" method="post"> <!--NAH INI YANG JADI POST NYA-->
+                        @csrf <!--INI BUAT NANDAIN KALO FIRM YANG INI VALID, DAN DIDALAMNYA INI ADA TAMBAHAN INPUTAN DAN BANYAK ATTRIBUT-->
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="task" id="todo-input"
                                 placeholder="Tambah task baru" required>
@@ -63,7 +65,7 @@
                                     Cari
                                 </button>
                             </div>
-                        </form>
+                        </form>  
                         
                         <ul class="list-group mb-4" id="todo-list">
                             <!-- 04. Display Data -->
