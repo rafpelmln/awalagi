@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Todo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -30,7 +31,20 @@ class TodoController extends Controller
     public function store(Request $request) // menyimpan data
     {
         // VALIDASI REQUEST Last 
-        dd($request);
+        $request->validate([
+            'task' => 'required|min:3|max:25'
+        ],[
+            'task.required' => 'Task Wajib Diisi',
+            'task.min' => 'Task harus diisi dengan minimal 3 karakter!',
+            'task.max' => 'Task harus diisi dengan maksimal 25 karakter!',
+        ]);
+
+        // BUAT PROSES MASUKIN ATAU NYIMPEN DATA KE TABELNYA
+        $data =[
+            'task' => $request->input('task')
+        ];
+        // masukin ke model nya
+        Todo::create($data);
     }
 
     /**

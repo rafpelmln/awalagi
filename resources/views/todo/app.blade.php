@@ -40,13 +40,25 @@
             <div class="col-md-8">
              <div class="card mb-3">
                 <div class="card-body">
+                    {{-- KALO ADA ERROR BAKAL TAMPIL DI SINI --}} 
+                    @if ($errors->any()) 
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error ) {{-- BUAT NAMPILIN APA AJA ERROR NYA --}}
+                                    <li>
+                                        {{$error}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <!-- 02. Form input data -->
                                          {{-- TAMBAH URL DI ACTION BIAR BISA AKSES SI WEB HALAMAN NYA, dan yang diakses nya cumman method post aja --}}
                     <form id="todo-form" action="{{ url('/tudu') }}" method="post"> <!--NAH INI YANG JADI POST NYA-->
                         @csrf <!--INI BUAT NANDAIN KALO FIRM YANG INI VALID, DAN DIDALAMNYA INI ADA TAMBAHAN INPUTAN DAN BANYAK ATTRIBUT-->
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="task" id="todo-input"
-                                placeholder="Tambah task baru" required>
+                                placeholder="Tambah task baru" required value="{{old('task')}}"> <!-- VALUE INI BUAT NAMPILIN APA AJA YANG DIINPUTKAN SEBELUMNYA -->
                             <button class="btn btn-primary" type="submit">
                                 Simpan
                             </button>
