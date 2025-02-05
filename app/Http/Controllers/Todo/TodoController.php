@@ -41,10 +41,15 @@ class TodoController extends Controller
 
         // BUAT PROSES MASUKIN ATAU NYIMPEN DATA KE TABELNYA
         $data =[
-            'task' => $request->input('task')
+            'task' => $request->input('task')  // Nama 'Task' ini diambil dari Nama kolom di database
         ];
-        // masukin ke model nya
+        // masukin dari $data ini ke model 
         Todo::create($data);
+        // Buat ngebalikin biar nampil ulang halaman yang sama, '/tudu' dari route nya
+        // return redirect('/tudu.post')->with('success','Keren Data Berhasil Dimasukin!');
+
+        // ini yang baru biar ngambilnya dari nama yang ada di web route
+        return redirect()->route('tudu')->with('success','Keren Data Berhasil Dimasukin!'); // nah jadi ini tuh nge reddirect sehabis masukin data jadinya tuh balik lagi ke halaman index tudu nya, makanya ngambil nya bukan yang tudu post
     }
 
     /**

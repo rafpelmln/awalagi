@@ -14,6 +14,7 @@ Route::get('/halo',[HaloController::class,'index']); // 1. NAMPILIN DARI HALOCON
 // Route::get('/tudu', function () {
 //     return view('todo.app');
 // });
-
-Route::get('/tudu',[TodoController::class,'index']);
-Route::post('/tudu',[TodoController::class,'store']); // POST BIASANYA BUAT FORM DAN POST INI BERASAL DARI POST DI FORM DARI VIEW
+                                                    // Ngasih nama buat route index tuh manggilnya cukup pake tudu       
+Route::get('/tudu',[TodoController::class,'index'])->name('tudu');
+                                                    // Ngasih nama buat route store, jadi manggilnya pake tudu.post
+Route::post('/tudu',[TodoController::class,'store'])->name('tudu.post'); // POST BIASANYA BUAT FORM DAN POST INI BERASAL DARI POST DI FORM DARI VIEW

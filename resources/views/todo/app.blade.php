@@ -40,6 +40,14 @@
             <div class="col-md-8">
              <div class="card mb-3">
                 <div class="card-body">
+
+                    {{-- Ini tuh ngecek kalo di session ada yang namanya succes ga  --}}
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
                     {{-- KALO ADA ERROR BAKAL TAMPIL DI SINI --}} 
                     @if ($errors->any()) 
                         <div class="alert alert-danger">
@@ -53,8 +61,9 @@
                         </div>
                     @endif
                     <!-- 02. Form input data -->
-                                         {{-- TAMBAH URL DI ACTION BIAR BISA AKSES SI WEB HALAMAN NYA, dan yang diakses nya cumman method post aja --}}
-                    <form id="todo-form" action="{{ url('/tudu') }}" method="post"> <!--NAH INI YANG JADI POST NYA-->
+                                         {{-- TAMBAH URL "url('/tudu')"  DI ACTION BIAR BISA AKSES SI WEB HALAMAN NYA, dan yang diakses nya cumman method post aja --}}
+                                         {{-- tambahan biar ga bingung jadi manggilnya pake nama yng udah dikasih di route, manggilnya pake route --}}
+                    <form id="todo-form" action="{{ route('tudu.post') }}" method="post"> <!--NAH INI YANG JADI POST NYA-->
                         @csrf <!--INI BUAT NANDAIN KALO FIRM YANG INI VALID, DAN DIDALAMNYA INI ADA TAMBAHAN INPUTAN DAN BANYAK ATTRIBUT-->
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="task" id="todo-input"
