@@ -13,8 +13,11 @@ class TodoController extends Controller
      */
     public function index()
     {
+        // Ngambil data dari model dan ngambil dari kolom 'task'
+        $data = Todo::orderBy('task', 'asc')->get();
+
         // INI AWALNYA DI WEB ROUTE, AWALNYA DISITU LANGSUNG KE VIEW NYA, TAPI SEKAKRANG INI DIPINDAHIN JADI KE CONTROLLER BUAT JALUR
-        return view('todo.app');
+        return view('todo.app', ['data'=> $data]); // Ini buat nampilin data nya dibelakang app
     }
 
     /**

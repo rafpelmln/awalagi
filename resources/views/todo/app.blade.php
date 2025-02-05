@@ -89,41 +89,44 @@
                         </form>  
                         
                         <ul class="list-group mb-4" id="todo-list">
+                            @foreach ($data as $item) <!-- Ngambilnya dari $data yang ada di controller depan di index-->
                             <!-- 04. Display Data -->
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span class="task-text">Coding</span>
+                                <span class="task-text">{{ $item->task }}</span> <!-- NAH INI  NGAMBIL DARI DATA YANG DIJADIIN ITEM, NGAMBIL KOLOM TASK-->
                                 <input type="text" class="form-control edit-input" style="display: none;"
-                                    value="Coding">
+                                    value="{{ $item->task }}">
                                 <div class="btn-group">
                                     <button class="btn btn-danger btn-sm delete-btn">✕</button>
                                     <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-1" aria-expanded="false">✎</button>
+                                                                {{-- nah  ini awaknya collapse-1. pas diklik semua data jadi keluar biar ga semua, cmn yg diklik aja jadi looping nya sesuai indexx yg cuman di klik aja     --}}
+                                        data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="false">✎</button>
                                 </div>
                             </li>
                             <!-- 05. Update Data -->
-                            <li class="list-group-item collapse" id="collapse-1">
+                            <li class="list-group-item collapse" id="collapse-{{ $loop->index }}">
                                 <form action="" method="POST">
                                     <div>
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" name="task"
-                                                value="Coding">
+                                                value="{{ $item->task }}">
                                             <button class="btn btn-outline-primary" type="button">Update</button>
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="radio px-2">
                                             <label>
-                                                <input type="radio" value="1" name="is_done"> Selesai
+                                                <input type="radio" value="1" name="is_done" {{ $item->is_done == '1'?'checked':'' }}> Selesai
                                             </label>
                                         </div>
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" value="0" name="is_done"> Belum
+                                                <input type="radio" value="0" name="is_done" {{ $item->is_done == '0'?'checked':'' }}> Belum
                                             </label>
                                         </div>
                                     </div>
                                 </form>
                             </li>
+                            @endforeach
                         </ul>
                         
                         
