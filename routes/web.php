@@ -18,3 +18,4 @@ Route::get('/halo',[HaloController::class,'index']); // 1. NAMPILIN DARI HALOCON
 Route::get('/tudu',[TodoController::class,'index'])->name('tudu');
                                                     // Ngasih nama buat route store, jadi manggilnya pake tudu.post
 Route::post('/tudu',[TodoController::class,'store'])->name('tudu.post'); // POST BIASANYA BUAT FORM DAN POST INI BERASAL DARI POST DI FORM DARI VIEW
+Route::put('/tudu/{id}',[TodoController::class,'update']); // buat alur route nya pake method put, dan di arahin ke fungsi update

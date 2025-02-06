@@ -17,7 +17,8 @@ class TodoController extends Controller
         $data = Todo::orderBy('task', 'asc')->get();
 
         // INI AWALNYA DI WEB ROUTE, AWALNYA DISITU LANGSUNG KE VIEW NYA, TAPI SEKAKRANG INI DIPINDAHIN JADI KE CONTROLLER BUAT JALUR
-        return view('todo.app', ['data'=> $data]); // Ini buat nampilin data nya dibelakang app
+        // return view('todo.app', ['data'=> $data]); // Ini buat nampilin data nya dibelakang app
+        return view('todo.app', compact('data')); // Ini biar ga perlu nulis array dan jadi ga panjang, makanya pake compact
     }
 
     /**
