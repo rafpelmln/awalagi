@@ -92,7 +92,12 @@
                             @foreach ($data as $item) <!-- Ngambilnya dari $data yang ada di controller depan di index-->
                             <!-- 04. Display Data -->
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span class="task-text">{{ $item->task }}</span> <!-- NAH INI  NGAMBIL DARI DATA YANG DIJADIIN ITEM, NGAMBIL KOLOM TASK-->
+                                <span class="task-text">
+                                    {{-- dibawah ini buat nyoretin yang udah selesai pake tag del --}}
+                                    {!! $item->is_done == '1'?'<del>':'' !!}
+                                    {{ $item->task }}
+                                    {!! $item->is_done == '1'?'</del>':'' !!}    
+                                </span> <!-- NAH INI  NGAMBIL DARI DATA YANG DIJADIIN ITEM, NGAMBIL KOLOM TASK-->
                                 <input type="text" class="form-control edit-input" style="display: none;"
                                     value="{{ $item->task }}">
                                 <div class="btn-group">
