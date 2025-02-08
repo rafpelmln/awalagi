@@ -104,15 +104,16 @@
                             </li>
                             <!-- 05. Update Data -->
                             <li class="list-group-item collapse" id="collapse-{{ $loop->index }}">
-                                                <!-- INI BUAT ROUTE BUAT AKSES KE HALAMAN NYA ATAU TERHUBUNG-->
-                                <form action="{{ url('/tudu' .$item->id) }}" method="POST">
+                                                <!-- INI BUAT ROUTE BUAT AKSES KE HALAMAN NYA ATAU TERHUBUNG, dan nngambil data yang namanya sesuai dengan id-->
+                                                {{-- {{ url('/tudu' .$item->id) }} itu kalo pake url langsung ke halaman bukan yang terhubung ke controller dan route --}}
+                                <form action="{{ route('tudu.update', ['id'=>$item->id]) }}" method="POST">
                                     @csrf
                                     @method('put') <!-- buat ngubah method post jadi put-->
                                     <div>
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" name="task"
                                                 value="{{ $item->task }}">
-                                            <button class="btn btn-outline-primary" type="button">Update</button>
+                                            <button class="btn btn-outline-primary" type="submit">Update</button>
                                         </div>
                                     </div>
                                     <div class="d-flex">

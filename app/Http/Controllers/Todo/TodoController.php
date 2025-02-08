@@ -75,9 +75,24 @@ class TodoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id) // $id ini diambil dari parameter yang ada di routenya
     {
-        //
+        $request->validate([
+            'task' => 'required|min:3|max:25'
+        ],[
+            'task.required' => 'Task Wajib Diisi',
+            'task.min' => 'Task harus diisi dengan minimal 3 karakter!',
+            'task.max' => 'Task harus diisi dengan maksimal 25 karakter!',
+        ]);
+
+        $data =[
+            'task' => $request->input('task'),  // Nama 'Task' ini diambil dari Nama kolom di database
+            'is_done' => $request->input('is_done') // ('is_done', 'task') itu diambil dari name yang ada app.blade.php name di tag nya.
+        ];
+        
+        Todo::where('id', $id)->update($data); // $id diambil dari string di parameter fungsi
+
+        return redirect()->route('tudu')->with("success", "Data Geus Di Update GG Kamu Yh");
     }
 
     /**
