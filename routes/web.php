@@ -19,3 +19,4 @@ Route::get('/tudu',[TodoController::class,'index'])->name('tudu');
                                                     // Ngasih nama buat route store, jadi manggilnya pake tudu.post
 Route::post('/tudu',[TodoController::class,'store'])->name('tudu.post'); // POST BIASANYA BUAT FORM DAN POST INI BERASAL DARI POST DI FORM DARI VIEW
 Route::put('/tudu/{id}',[TodoController::class,'update'])->name('tudu.update'); // buat alur route nya pake method put, dan di arahin ke fungsi update
+Route::delete('/tudu/{id}',[TodoController::class,'destroy'])->name('tudu.delete'); // BUAT ROUTE DELETE HUBUNGIN KE FUNGSI DESTROY

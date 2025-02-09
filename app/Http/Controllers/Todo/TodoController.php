@@ -94,12 +94,13 @@ class TodoController extends Controller
 
         return redirect()->route('tudu')->with("success", "Data Geus Di Update GG Kamu Yh");
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        Todo::where('id',$id)->delete();
+        return redirect()->route('tudu')->with("success", "Data Dah dihapus");
     }
 }

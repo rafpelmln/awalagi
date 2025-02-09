@@ -101,7 +101,12 @@
                                 <input type="text" class="form-control edit-input" style="display: none;"
                                     value="{{ $item->task }}">
                                 <div class="btn-group">
-                                    <button class="btn btn-danger btn-sm delete-btn">✕</button>
+                                                {{-- ROUTE NYA DIHUBUNGIN KE ROUTE DELETE, DAN NGAMBIL DARI $item di foreach dari data di fungsi index. --}}
+                                    <form action="{{ Route('tudu.delete', ['id'=>$item->id]) }}" method="POST">
+                                        @csrf <!-- jadi pelindung-->
+                                        @method('delete') <!-- MAU PAKE METHOD YANG LAIN-->
+                                        <button class="btn btn-danger btn-sm delete-btn">✕</button>
+                                    </form>
                                     <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="collapse"
                                                                 {{-- nah  ini awaknya collapse-1. pas diklik semua data jadi keluar biar ga semua, cmn yg diklik aja jadi looping nya sesuai indexx yg cuman di klik aja     --}}
                                         data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="false">✎</button>
