@@ -13,9 +13,18 @@ class TodoController extends Controller
      */
     public function index()
     {
-        // Ngambil data dari model dan ngambil dari kolom 'task'
-        $data = Todo::orderBy('task', 'asc')->get();
+        // Buat ngebatasin data yang ada di halaman pake (paginate)
+        $maks_data = 5;
 
+        // ini ngambil kalo search ada data. maka tampilin lah data sesuai yang di search
+        if(request('search'))
+        {
+            $data = Todo::where('task', 'like','%'.request('search').'%')->paginate($maks_data); // ini
+        } else // kalo misalnya gaada yang dicari tampilin semua data.
+        {
+            // Ngambil data dari model dan ngambil dari kolom 'task'
+            $data = Todo::orderBy('task', 'asc')->paginate($maks_data); // ini
+        }
         // INI AWALNYA DI WEB ROUTE, AWALNYA DISITU LANGSUNG KE VIEW NYA, TAPI SEKAKRANG INI DIPINDAHIN JADI KE CONTROLLER BUAT JALUR
         // return view('todo.app', ['data'=> $data]); // Ini buat nampilin data nya dibelakang app
         return view('todo.app', compact('data')); // Ini biar ga perlu nulis array dan jadi ga panjang, makanya pake compact

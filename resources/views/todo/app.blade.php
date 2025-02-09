@@ -78,9 +78,10 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- 03. Searching -->
-                        <form id="todo-form" action="" method="get">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="search" value="" 
+                                                    {{-- nambahin route ngambil dari fungsi index --}}
+                        <form id="todo-form" action="{{ Route('tudu') }}" method="get">
+                            <div class="input-group mb-3">                                      {{-- biar nambilin apa yang habis di search --}}
+                                <input type="text" class="form-control" name="search" value="{{ request('search') }}" 
                                     placeholder="masukkan kata kunci">
                                 <button class="btn btn-secondary" type="submit">
                                     Cari
@@ -102,7 +103,8 @@
                                     value="{{ $item->task }}">
                                 <div class="btn-group">
                                                 {{-- ROUTE NYA DIHUBUNGIN KE ROUTE DELETE, DAN NGAMBIL DARI $item di foreach dari data di fungsi index. --}}
-                                    <form action="{{ Route('tudu.delete', ['id'=>$item->id]) }}" method="POST">
+                                    <form action="{{ Route('tudu.delete', ['id'=>$item->id]) }}" method="POST"
+                                        onsubmit="return confirm('bener mau dihapus?')"> <!-- buat persetujuan mau dihapus atau ngga-->
                                         @csrf <!-- jadi pelindung-->
                                         @method('delete') <!-- MAU PAKE METHOD YANG LAIN-->
                                         <button class="btn btn-danger btn-sm delete-btn">✕</button>
@@ -142,7 +144,7 @@
                             </li>
                             @endforeach
                         </ul>
-                        
+                        {{ $data->links() }} {{-- INI BUAT LINK HALAMAN KE NEXT --}}
                         
                     </div>
                 </div>
